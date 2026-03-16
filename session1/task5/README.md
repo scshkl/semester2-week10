@@ -16,6 +16,38 @@ multiplication example from Task 1.
 
 3. Run Gprof like so:
 
-       gprof multiply gmon.out
+       gprof multiply gmon.out > report.txt
 
-   Examine the report that is displayed in the terminal.
+   Profiling information will be available in human-readable form in
+   `report.txt`.
+
+4. Study the 'flat profile' printed at the start of `report.txt`. This shows
+   headline performance statistics for the program's functions, in a table.
+
+   The table is sorted by total time spent executing each function, and then
+   by function name in cases where time estimates are indistinguishable
+   from each other. Read the column descriptions beneath the table for further
+   information on what it shows.
+
+   You can see here that
+
+   - The program spends almost all of its time in `multiply_row_by_column()`,
+     which is invoked 1,000,000 times.
+
+   - `get_pseudorandom_number()` is invoked 2,000,000 times, but consumes
+     almost no time in comparison to `multiply_row_by_column()`.
+
+   - The other functions are called only a few times each and make no
+     measureable contribution to execution time themselves.
+
+5. Study the call graph, which appears after the flat profile. This appears
+   in tabular form and is a little harder to interpret.
+
+   Read the information below the table carefully, as it gives a detailed
+   explanation of what the different elements of the table mean.
+
+   Notice how this provides additional information, not seen in the flat
+   profile. For example, the flat profile tells you that `matrix_create()`
+   is called a total of three times, but the call graph tells you that one of
+   those calls is made from `matrix_multiply()` and the other two are made
+   from `main()`.

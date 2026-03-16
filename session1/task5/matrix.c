@@ -1,7 +1,6 @@
 /* Functions to handle matrices */
 
 #include <assert.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "matrix.h"
@@ -84,6 +83,13 @@ Matrix* matrix_multiply(const Matrix* a, const Matrix* b)
 }
 
 
+float get_pseudorandom_number(float max_value)
+{
+    int num = rand();
+    return (max_value * num) / RAND_MAX;
+}
+
+
 /**
  * @brief Fills a matrix with pseudorandom values in the range [0.0, 1.0]
  *
@@ -97,7 +103,7 @@ void matrix_fill(Matrix* mat)
 
     for (int i = 0; i < mat->rows; ++i) {
         for (int j = 0; j < mat->cols; ++j) {
-            mat->data[i][j] = (float) rand() / RAND_MAX;
+            mat->data[i][j] = get_pseudorandom_number(1.0);
         }
     }
 }
