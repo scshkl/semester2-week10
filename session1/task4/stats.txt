@@ -1,0 +1,3 @@
+time gcc -O0 pgm_tools.c | wc -c a.out | 21208
+time gcc -O3 pgm_tools.c | wc -c a.out | 21240
+time gcc -Os pgm_tools.c | wc -c a.out | 17128
