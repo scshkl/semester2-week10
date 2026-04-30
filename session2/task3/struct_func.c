@@ -60,6 +60,10 @@ int main( void ) {
     // write code to loop through the 3 functions and print an appropriate sum for each, eg. "2 + 3 = 5"
     // use the structure symbol and function-pointer data rather than hard-coding values
 
+    for(int i=0; i<3; ++i){
+        printf("operation %c, result: %d\n", myFunctions->symbols[i], myFunctions->operations[i](num1, num2));
+    }
+
     free(myFunctions);
     return 0;
 }
