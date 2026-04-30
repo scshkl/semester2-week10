@@ -93,11 +93,19 @@ int main( int argc, char *argv[] ) {
     calculator->print( calculator );
 
     // use the parser function to set the internal data 
-    //calculator->parser( calculator, 1,'+',3 );
-    //calculator->print( calculator );
+    calculator->parser( calculator, 1,'+',3 );
+    calculator->print( calculator );
 
     // call the calculator function to compute the result 
+    calculator->calculate(calculator);
     // print the result using the class print function
+    calculator->print( calculator );
+
+    if(argc == 4){
+        calculator->parser(calculator, atoi(argv[1]), argv[2][0], atoi(argv[3]));
+        calculator->calculate(calculator);
+        calculator->print( calculator );
+    }
 
     free(calculator);
 

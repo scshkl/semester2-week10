@@ -51,7 +51,7 @@ int multiply( int i, int j ) {
 /* 
  * main: creating and testing structures containing function pointers
  */
-int main( void ) {
+int main( int argc, char* argv[] ) {
 
     Functions *myFunctions = setFunctions();
 
@@ -62,6 +62,32 @@ int main( void ) {
 
     for(int i=0; i<3; ++i){
         printf("operation %c, result: %d\n", myFunctions->symbols[i], myFunctions->operations[i](num1, num2));
+    }
+
+    if (argc == 4){
+        int n1 = atoi(argv[1]);
+        char sym = argv[2][0];
+        int n2 = atoi(argv[3]);
+
+        printf("opration %c\n", sym);
+
+        switch(sym){
+            case '+':
+                printf("results of %d %c %d = %d\n", n1, 
+                    sym, n2, myFunctions->operations[0](n1, n2));
+                break;
+            case '-':
+                printf("results of %d %c %d = %d\n", n1, 
+                    sym, n2, myFunctions->operations[1](n1,n2));
+                break;    
+            case 'x':
+                printf("results of %d %c %d = %d\n", n1, 
+                    sym, n2, myFunctions->operations[2](n1,n2));
+                break;       
+            default:
+                    printf("operation not defined!\n");
+        }
+
     }
 
     free(myFunctions);
